@@ -133,6 +133,9 @@
 			{
 				var rawRank = document.getElementById("rank").value;
 				var rawTime = document.getElementById("time").value;
+				
+				console.log(rawRank, rawTime);
+				
 				/*get the ranking item, "star number" or "fork number" */
 				var rankItem = "stars";
 				if (rawRank == "Rank by fork number")
@@ -165,7 +168,11 @@
 				var HTMLcontent = "";
 				for (i=0; i<rawResults["items"].length; i++ )
 					{	
-						HTMLcontent += "<br><div class=\"col-lg-12\"><a href=" + rawResults["items"][i]["html_url"] + " class=\"list-group-item\">" + "<b>" + rawResults["items"][i]["full_name"] + "</b>: " + rawResults["items"][i]["description"] + "</a></div><hr>";
+						var html_url = rawResults["items"][i]["html_url"];
+						var full_name = rawResults["items"][i]["full_name"];
+						var projectDescription = rawResults["items"][i]["description"];
+						//HTMLcontent += "<br><div class=\"col-lg-12\"><a href=" + rawResults["items"][i]["html_url"] + " class=\"list-group-item\"  target=\"_blank\">" + "<b>" + rawResults["items"][i]["full_name"] + "</b>: " + rawResults["items"][i]["description"] + "</a></div><hr>";
+						HTMLcontent += `<br><div class="col-lg-12"><a href= ${html_url} class="list-group-item"  target="_blank"><b>${full_name}</b>: ${projectDescription}</a></div><hr>`;
 					} 
 				document.getElementById("resultList").innerHTML = HTMLcontent;
 
